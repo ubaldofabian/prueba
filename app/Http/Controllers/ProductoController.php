@@ -29,19 +29,15 @@ class ProductoController extends Controller
         ]);
 
         Producto::query()->create($datos);
- 
+
         return redirect('producto')->with('mensaje', 'Producto Agregado');
     }
 
-    public function show(Producto $producto)
+    public function edit(Producto $producto)
     {
-        //
-    }
-
-    public function edit($id)
-    {
-        $producto = Producto::findOrFail($id);
-        return view('producto.editar', compact('producto'));
+        return view('producto.editar', [
+            'producto' => $producto
+        ]);
     }
 
     public function update(Request $request, $id)
