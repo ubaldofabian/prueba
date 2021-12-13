@@ -8,38 +8,17 @@ use phpDocumentor\Reflection\Types\True_;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('producto.index', [
-            'productos' => Producto::query()->where('precio','>', 40)->get(),
+            'productos' => Producto::query()->where('precio', '>', 40)->get(),
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function create()
     {
         return view('producto.crear');
     }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function store(Request $request)
     {
@@ -51,39 +30,16 @@ class ProductoController extends Controller
         return redirect('producto')->with('mensaje', 'Producto Agregado');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function show(Producto $producto)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function edit($id)
     {
         $producto = Producto::findOrFail($id);
         return view('producto.editar', compact('producto'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function update(Request $request, $id)
     {
@@ -97,13 +53,6 @@ class ProductoController extends Controller
 
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Producto::destroy($id);
