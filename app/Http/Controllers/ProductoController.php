@@ -22,11 +22,14 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-//        $datosProducto = request()->all();
-        $datosProducto = request()->except('_token');
-        Producto::insert($datosProducto);
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:150',
+            'descripcion' => 'required|string|max:150',
+            'precio' => 'required|numeric',
+        ]);
 
-//        return response()->json($datosProducto);
+        Producto::query()->create($datos);
+ 
         return redirect('producto')->with('mensaje', 'Producto Agregado');
     }
 
